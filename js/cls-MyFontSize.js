@@ -1,7 +1,7 @@
 class MyFontSize{
   // Default size store karne ke liye variable
   DEFAULT_SIZE = 16;
-  currentSize = DEFAULT_SIZE;
+  currentSize = this.DEFAULT_SIZE;
   MIN = 4;
   MAX = 30;
   STEP = 1;
