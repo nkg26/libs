@@ -27,7 +27,7 @@ class IO{
 	
   async readFile(filePath) {
     let response = await fetch(filePath);
-    return ((!response.ok) || (response.status === 404))?null:await response.text();
+    return await ((!response.ok) || (response.status === 404))?null: response.text();
   }
 
 
