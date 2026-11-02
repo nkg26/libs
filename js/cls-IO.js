@@ -1,28 +1,43 @@
-class IO{
-
-  
-			async readMultipleFilesParallel(filePaths) {
-				// Files ke paths ki array
-				//const filePaths = ['file1.txt', 'file2.txt', 'file3.txt'];
-
-				try {
-					console.log("Saari files background threads me read hona shuru ho gayi hain...");
-					// Map se har file ke liye ek independent async read promise banega
-					const readPromises = filePaths.map(path => fs.readFile(path, 'utf8'));
-
-					// Promise.all saare background threads ke complete hone ka wait karega
-					const allFilesData = await Promise.all(readPromises);
-
-					console.log("✅ Saari files successfully read ho chuki hain!");
-					//console.log("File 1 Data:", allFilesData[0]);
-					//console.log("File 2 Data:", allFilesData[1]);
-					return allFilesData;
-
-				} catch (error) {
-					console.error("❌ Kisi ek file me dikkat aayi ya file exist nahi karti:", error);
-				}
-			}
+// JavaScript me await tabhi kaam karta hai jab uski parent line (ya function) ke aage async likha ho.
+/*
+	// Parent function normal hai ❌
+	function processData() {
+	    // ❌ ERROR: Kyunki iska parent function 'async' nahi hai!
+	    let data = await fetch('https://example.com'); 
+	}
 	
+	// Parent function ke aage 'async' laga diya ✅
+	async function processData() {
+	    // ✅ PERFECT: Kyunki iska parent (main function) ab async hai
+	    let data = await fetch('https://example.com'); 
+	}
+
+*/
+class IO{
+	
+	async readMultipleFilesParallel(filePaths) {
+		// Files ke paths ki array
+		//const filePaths = ['file1.txt', 'file2.txt', 'file3.txt'];
+		
+		try {
+			const fs = require('fs').promises;
+			console.log("Saari files background threads me read hona shuru ho gayi hain...");
+			// Map se har file ke liye ek independent async read promise banega
+			const readPromises = filePaths.map(path => fs.readFile(path, 'utf8'));
+		
+			// Promise.all saare background threads ke complete hone ka wait karega
+			const allFilesData = await Promise.all(readPromises);
+		
+			console.log("✅ Saari files successfully read ho chuki hain!");
+			//console.log("File 1 Data:", allFilesData[0]);
+			//console.log("File 2 Data:", allFilesData[1]);
+			return allFilesData;
+		
+		} catch (error) {
+			console.error("❌ Kisi ek file me dikkat aayi ya file exist nahi karti:", error);
+		}
+	}
+
 	
 	
   async readFile(filePath) {
