@@ -67,7 +67,7 @@ class IO{
     // here callbackFunctionName use without any quotes and not with "asd()"
     async readAndCallback(filePath, callbackFunctionName) {
       console.log("filePath="+filePath);
-      console.log("callbackFunction="+callbackFunction);
+      console.log("callbackFunctionName="+callbackFunctionName);
   
       let response = await fetch(filePath);
       let data = await response.text();
