@@ -1,6 +1,5 @@
 	class FX_MyPList{
 			
-			
 			// agar list item ki value me specified value exist karti hai.
 			filterByValue(pList, KEY, INCLUDES_VALUE){
 				return pList.filter(item => {
