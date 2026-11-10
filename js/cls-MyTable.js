@@ -70,38 +70,4 @@ class MyTable{
 	  return html;
 	}
 
-	/* convert tabuler data into array of [{h1:v1, h2:v2, ...}, {...}, ...]*/
-	toKeyMapObjectList(TABULAR_DATA){
-		const [headers, ...rows] = TABULAR_DATA;
-		  if (!headers) return [];
-		  return rows.map(row => Object.fromEntries(headers.map((header, i) => [header, row[i]])));
-	}
-
-	/* convert tabuler data into array of [{h1:v1, h2:v2, ...}, {...}, ...]*/
-	convertTableToScriptArrayObject_old(data){
-		let out = [];
-		for(let i=1;i<data.length;i++) out.push(Object.fromEntries(data[0].map((key, j) => [key, data[i][j]])));
-		return out;
-	}
-
-	/* 2 map-array objects ke data ko kisi attribute-key ki condition se merge karna..*/
-	/* data MAIN_LIST me add hoga.. */
-	merge_KeyMapObjects(MAIN_LIST, ADD_DATA, KEY_NAME){
-	  if(KEY_NAME===null || KEY_NAME===undefined){
-		console.log(' undefined or null merge key...');
-		return;
-	  }
-	  const A = MAIN_LIST;
-	  const B = ADD_DATA;
-		for(let i=0; i<A.length; i++){
-			let VAL = A[i][KEY_NAME];
-			for(let j=0; j<B.length; j++){
-				if(VAL === B[j][KEY_NAME]){
-					Object.assign(A[i], B[j]); // merge both data and assign to A.
-					break;
-				}
-			}
-		}
-	}
-
 }
