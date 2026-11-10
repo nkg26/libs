@@ -1,4 +1,9 @@
 	class FX_MyPList{
+
+/*
+	// Saari keys nikalne ke liye
+	const keys = Object.keys(plist[0]);
+*/
 			
 			// agar list item ki value me specified value exist karti hai.
 			filterByValue(pList, KEY, INCLUDES_VALUE){
