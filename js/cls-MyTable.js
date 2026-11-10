@@ -21,7 +21,13 @@ class MyTable{
 	// convert text into 2D array
 	splitToTable(content, trim=false){
 		//console.log('   ---   convertToTableObject(content)');
-		const lines = content.split('\n').filter(line => line.trim() !== '');
+
+		/*
+		// Yeh regex sabhi tarah ke line breaks (\r\n, \n, \r) ko match karega
+		const lines = text.split(/\r?\n|\r/);
+		*/
+		
+		const lines = content.split(/\r?\n|\r/).filter(line => line.trim() !== '');
 		// अगर कोई line नहीं तो बाहर निकलो
 		if (lines.length === 0)   return null;
 		// पहली line header मान लो (अगर comma separated है)
