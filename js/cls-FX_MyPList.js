@@ -115,6 +115,21 @@
 			}
 			return html += "</tbody></table>";
 		}
-
+		
+		// isme plist ko 2D-Array (Tablular data) me convert karte hai..
+		toTablularData(plist, keys){
+			keys = (keys===null || keys === undefined || keys.length<1) ? this.getUniqueKeys(plist):keys;
+			let out = new Array(plist.length+1);
+			let row = new Array(keys.length);
+			for(let i=0; i<keys.length; i++) row[i]=keys[i]; 
+			out[0]= row;
+			for(let r=0; r<plist.length; r++){
+				row = new Array(keys.length);
+				for(let i=0; i<keys.length; i++) row[i]=plist[r][keys[i]]; 
+				out[r+1] = row;
+			}
+			return out;
+		}
+	
 	
 	}
