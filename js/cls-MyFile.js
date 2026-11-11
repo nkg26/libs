@@ -16,7 +16,7 @@ class MyFile {
             // File ka data class ke variable (property) mein store ho gaya
             this.fileContent = await response.text();
             this.dataLoaded = true;
-            console.log("Class variable mein data save ho gaya!");
+           // console.log("Class variable mein data save ho gaya!");
         } catch (error) {
             console.error("Error:", error);
             this.dataError = error;
