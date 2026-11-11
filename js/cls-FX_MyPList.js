@@ -86,5 +86,31 @@
 				  if (!headers) return [];
 				  return rows.map(row => Object.fromEntries(headers.map((header, i) => [header, row[i]])));
 			}
+
+		getUniqueKeys(plist){
+			//let keys = Object.keys(plist[1]);
+			// सभी unique keys निकालना
+			const uniqueKeys = [...new Set(plist.flatMap(obj => Object.keys(obj)))];
+			return uniqueKeys;
+		}
+		
+		norm(val){ return val === undefined ? '' : val;	}
+
+		toHtmlTable(plist, keys){
+			keys = (keys===null || keys === undefined || keys.length<1) ? this.getUniqueKeys(plist):keys;
+			let html = "<table border=true cellspacing=0 class='pTable'>";
+			let row='';
+			for(let c=0; c<keys.length; c++) row += ("<th class='C"+c+"'>"+norm(plist[i][keys[c]]) + "</th>"); 
+			html += "<thead> <tr>"+row+"</tr> </thead>";
+			
+			html += "<tbody>";
+			for(let i=0; i<plist.length; i++){
+				row='';
+				for(let c=0; c<keys.length; c++) row += ("<td class='C"+c+"'>"+norm(plist[i][keys[c]]) + "</td>"); 
+				html += "<tr>"+row+"</tr>";
+			}
+			return html += "</tbody></table>";
+		}
+
 	
 	}
