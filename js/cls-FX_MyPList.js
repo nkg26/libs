@@ -81,7 +81,7 @@
 	
 			/* not tabular plain text, its 2D-Array*/
 			/* convert tabuler data into array of [{h1:v1, h2:v2, ...}, {...}, ...]*/
-			async toPList(TABULAR_DATA){
+			toPList(TABULAR_DATA){
 				const [headers, ...rows] = TABULAR_DATA;
 				  if (!headers) return [];
 				  return rows.map(row => Object.fromEntries(headers.map((header, i) => [header, row[i]])));
