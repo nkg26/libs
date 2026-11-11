@@ -121,11 +121,11 @@
 			keys = (keys===null || keys === undefined || keys.length<1) ? this.getUniqueKeys(plist):keys;
 			let out = new Array(plist.length+1);
 			let row = new Array(keys.length);
-			for(let i=0; i<keys.length; i++) row[i]=norm(keys[i]); 
+			for(let i=0; i<keys.length; i++) row[i]=this.norm(keys[i]); 
 			out[0]= row;
 			for(let r=0; r<plist.length; r++){
 				row = new Array(keys.length);
-				for(let i=0; i<keys.length; i++) row[i]=norm(plist[r][keys[i]]); 
+				for(let i=0; i<keys.length; i++) row[i]=this.norm(plist[r][keys[i]]); 
 				out[r+1] = row;
 			}
 			return out;
