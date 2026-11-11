@@ -142,7 +142,7 @@
 		}
 		
 		// we will merge columns...
-		mergePValues(plist, newKeyName, keyNames, seprator=" | "){
+		addMergedKeys(plist, newKeyName, keyNames, seprator=" | "){
 			for(let i=0; i<plist.length; i++)	{
 				let val = '';
 				for(let j=0; j<keyNames.length; j++)	val += ((j===0?'':seprator) + (plist[i][keyNames[j]]));
