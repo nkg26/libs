@@ -131,5 +131,30 @@
 			return out;
 		}
 	
+		delKey(plist, delKeyName){
+			for(let i=0; i<plist.length; i++) delete plist[i][delKeyName];
+		}
+		
+		delKeys(plist, delKeyNames){
+			for(let i=0; i<plist.length; i++)	
+				for(let j=0; j<delKeyNames.length; j++)	
+					delete plist[i][delKeyNames[j]];
+		}
+		
+		// we will merge columns...
+		mergePValues(plist, newKeyName, keyNames, seprator=" | "){
+			for(let i=0; i<plist.length; i++)	{
+				let val = '';
+				for(let j=0; j<keyNames.length; j++)	val += ((j===0?'':seprator) + (plist[i][keyNames[j]]));
+				plist[i][newKeyName] =  val;
+			}
+		}
+		
+		renameKey(plist, oldKeyName, newKeyName){
+			for(let i=0; i<plist.length; i++)	{
+				plist[i][newKeyName] = plist[i][oldKeyName];
+				delete plist[i][oldKeyName];
+			}
+		}	
 	
 	}
