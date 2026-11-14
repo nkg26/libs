@@ -71,8 +71,10 @@ class MyTable{
 	}
 
 	generateHighlightedHtmlTable(TABLE, highlightText, cssClassName){
+		let isNullCsssClass = false; // assume
 		if(TABLE && highlightText && highlightText.length > 0 && TABLE.length > 0){
-			cssClassName = (cssClassName===null || cssClassName===undefined || cssClassName==='') ? 'highlight' : cssClassName;
+			isNullCsssClass = (cssClassName===null || cssClassName===undefined || cssClassName==='');
+			cssClassName = isNullCsssClass ? 'highlight' : cssClassName;
 			let REPL = "<span class='"+cssClassName+"'>$1</span>";
 			// create clone of original table data..
 			let data = structuredClone(TABLE);
@@ -82,6 +84,7 @@ class MyTable{
 
 			TABLE = data;
 		}
+		//return (isNullCsssClass?'':'')+this.generateBasicHtmlTable(TABLE);
 		return this.generateBasicHtmlTable(TABLE);
 	}
 	
