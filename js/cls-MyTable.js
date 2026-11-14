@@ -70,4 +70,24 @@ class MyTable{
 	  return html;
 	}
 
+	// always return null OR cloned array..
+	createHighlightedTextTable(TABLE, highlightText, cssClassName){
+		if(TABLE && highlightText && highlightText.length>0 && TABLE.length>1){
+			cssClassName = (cssClassName===null || cssClassName===undefined || cssClassName==='') ? 'highlight' : cssClassName;
+			let REPL = "<span class='"+cssClassName+"'>$1</span>";
+		
+			let data = structuredClone(TABLE);
+			let regex = new RegExp("(" + highlightText + ")", "gi");
+			
+			for(let i=1;i<data.length; i++)
+				for(let j=0;j<data[i].length; j++)
+					data[i][j] = data[i][j].replace(regex,REPL);
+				
+			return data;
+		}
+		return null;
+	}
+	
+	
+
 }
