@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Generator-2</title>
+  <!-- क्लास फ़ाइल को लिंक करें -->
+  <script src="QRGenerator.js"></script>
+</head>
+<body>
+
+<h1>Generate your qr-codes here</h1>
+ <div id="qr-box"></div>
+  
+  
+<style>
+div.qr{ display:inline-block; border:1px solid red; padding:10px; margin:5px; border-radius:5px;}
+div.qr input{display:block; width:100%;}
+div.qr span {display:block; border:2px solid blue; width:100%; border-radius:5px;}
+div.qr span:hover {border-color:green; }
+</style>
+  <script>
+  function newHtmlQR(id){
+	return ` <div class="qr"> #${id}<input type='text' onkeyup='showQR(this,"${id}")' placeholder="Text to Generate QR code"> <br/><span id='${id}'> </span> </div>`;
+  }
+  
+  let html = '';
+  for(let i=0; i<20; i++){
+	html += newHtmlQR("QR-"+(i+1));
+  }
+  
+  document.getElementById('qr-box').innerHTML = html;
+  
+  
+    // क्लास का ऑब्जेक्ट बनाएं (डिफ़ॉल्ट सेटिंग्स के साथ)
+    const qr = new QRGenerator({
+      size: 180,
+      colorDark: "#1e293b",
+      colorLight: "#ffffff"
+    });
+	
+	function showQR(input, id){
+		qr.render("#"+id, input.value);
+    //qr.render("#"+id, input.value, { colorDark: "red" });
+	}
+	
+	function downloadQR(input){
+		qr.download(input.value, 'my-qr.png');
+	}
+</script>
+
+</body>
+</html>
