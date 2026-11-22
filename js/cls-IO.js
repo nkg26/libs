@@ -78,7 +78,16 @@ class IO{
       }
   }
 
-
+    // here callbackFunctionName use without any quotes and not with "asd()"
+    async readAndCallback2(filePath, callbackFunctionName, args) {
+      let response = await fetch(filePath);
+      let data = await response.text();
+      // Kaam khatam hone par runtime function call karein
+      if (typeof callbackFunctionName === 'function') {
+          callbackFunctionName(data, args);
+      }
+  }
+	
 }
 
 
